@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(version: 2020_05_22_091154) do
   end
 
   create_table "dish_inrgedients", force: :cascade do |t|
-    t.bigint "dished_id", null: false
+    t.bigint "dish_id", null: false
     t.bigint "ingredient_id", null: false
     t.string "amount"
-    t.index ["dished_id"], name: "index_dish_inrgedients_on_dished_id"
+    t.index ["dish_id"], name: "index_dish_inrgedients_on_dish_id"
     t.index ["ingredient_id"], name: "index_dish_inrgedients_on_ingredient_id"
   end
 
-  create_table "disheds", force: :cascade do |t|
+  create_table "dishes", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.string "slug", default: "", null: false
     t.bigint "category_id", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_091154) do
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_disheds_on_category_id"
+    t.index ["category_id"], name: "index_dishes_on_category_id"
   end
 
   create_table "goals", force: :cascade do |t|
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2020_05_22_091154) do
 
   create_table "goals_dishes", force: :cascade do |t|
     t.bigint "goal_id", null: false
-    t.bigint "dished_id", null: false
-    t.index ["dished_id"], name: "index_goals_dishes_on_dished_id"
+    t.bigint "dish_id", null: false
+    t.index ["dish_id"], name: "index_goals_dishes_on_dish_id"
     t.index ["goal_id"], name: "index_goals_dishes_on_goal_id"
   end
 
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 2020_05_22_091154) do
   end
 
   create_table "nutritional_values", force: :cascade do |t|
-    t.bigint "dished_id", null: false
+    t.bigint "dish_id", null: false
     t.string "title", default: "", null: false
     t.string "value"
-    t.index ["dished_id"], name: "index_nutritional_values_on_dished_id"
+    t.index ["dish_id"], name: "index_nutritional_values_on_dish_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -82,12 +82,12 @@ ActiveRecord::Schema.define(version: 2020_05_22_091154) do
     t.string "image_url"
   end
 
-  add_foreign_key "dish_inrgedients", "disheds"
+  add_foreign_key "dish_inrgedients", "dishes"
   add_foreign_key "dish_inrgedients", "ingredients"
-  add_foreign_key "disheds", "categories"
-  add_foreign_key "goals_dishes", "disheds"
+  add_foreign_key "dishes", "categories"
+  add_foreign_key "goals_dishes", "dishes"
   add_foreign_key "goals_dishes", "goals"
   add_foreign_key "ingredient_products", "ingredients"
   add_foreign_key "ingredient_products", "products"
-  add_foreign_key "nutritional_values", "disheds"
+  add_foreign_key "nutritional_values", "dishes"
 end

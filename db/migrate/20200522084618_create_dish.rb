@@ -1,6 +1,6 @@
-class CreateDished < ActiveRecord::Migration[6.0]
+class CreateDish < ActiveRecord::Migration[6.0]
   def change
-    create_table :disheds do |t|
+    create_table :dishes do |t|
       t.string :title, null: false, default: ''
       t.string :slug, null: false, default: ''
       t.references :category, null: false, foreign_key: true
