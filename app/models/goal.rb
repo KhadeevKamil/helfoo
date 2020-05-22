@@ -11,4 +11,6 @@
 #  updated_at :datetime         not null
 #
 class Goal < ApplicationRecord
+  has_many :goals_dishes
+  has_many :dishes, through: :goals_dishes
 end
