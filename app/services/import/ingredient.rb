@@ -11,7 +11,7 @@ module Import
       i = 0
       CSV.foreach(Rails.root.join("csvs/dishes.csv"), col_sep: ',', headers: true) do |row|
         i+=1
-        next if i > 3
+        next if i > 3 # TODO: delete me
         [
           row['Item 1'],
           row['Item 2'],
