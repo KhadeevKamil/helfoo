@@ -6,7 +6,7 @@ class CreateGoals < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :slug
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end

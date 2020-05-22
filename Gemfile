@@ -34,6 +34,7 @@ gem 'foreman'
 
 gem 'rack-cors'
 gem 'responders'
+gem 'translit'
 
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
@@ -56,6 +57,8 @@ group :development do
 
   gem 'pry'
   gem 'pry-byebug'
+
+  gem 'annotate'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -37,20 +37,20 @@ namespace :import do
   end
 
   task nutritional_value: :environment do
-    Import::NutritionalValue.call
+    Import::NutritionalValue.new.call
   end
 
   namespace :product do
     task perekrestok: :environment do
-      Import::Product.call('perekrestok')
+      Import::Product.new.call('perekrestok')
     end
 
     task lenta: :environment do
-      Import::Product.call('lenta')
+      Import::Product.new.call('lenta')
     end
 
     task metro: :environment do
-      Import::Product.call('metro')
+      Import::Product.new.call('metro')
     end
   end
 end

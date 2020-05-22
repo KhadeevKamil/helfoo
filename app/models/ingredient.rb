@@ -2,15 +2,16 @@
 
 # == Schema Information
 #
-# Table name: goals
+# Table name: ingredients
 #
 #  id         :bigint           not null, primary key
 #  title      :string
-#  slug       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Goal < ApplicationRecord
-  has_many :goals_dishes
-  has_many :dishes, through: :goals_dishes
+class Ingredient < ApplicationRecord
+  has_many :dish_inrgedient
+  has_many :dish, through: :dish_inrgedient
+  has_many :ingredient_product
+  has_many :product, through: :ingredient_product
 end

@@ -3,7 +3,7 @@
 module Import
   class Helper
     def self.to_slug(title)
-      ::ActiveSupport::Inflector.transliterate(title)
+      Translit.convert(title, :english)
         .downcase
         .gsub(/(?:^[\s [[:space:]]]+|[\s [[:space:]]]+$)/, '')
         .gsub(/[\s [[:space:]]]+/, '-')

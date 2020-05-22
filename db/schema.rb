@@ -10,32 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_091154) do
+ActiveRecord::Schema.define(version: 2020_05_22_154805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.string "slug", default: "", null: false
+    t.string "title"
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "dish_inrgedients", force: :cascade do |t|
     t.bigint "dish_id", null: false
     t.bigint "ingredient_id", null: false
     t.string "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["dish_id"], name: "index_dish_inrgedients_on_dish_id"
     t.index ["ingredient_id"], name: "index_dish_inrgedients_on_ingredient_id"
   end
 
   create_table "dishes", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.string "slug", default: "", null: false
-    t.bigint "category_id", null: false
+    t.string "title"
+    t.string "slug"
     t.string "image_url"
     t.float "calories"
     t.float "carbohydrates"
     t.float "protein"
+    t.bigint "category_id", null: false
     t.float "fat"
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
@@ -51,8 +55,10 @@ ActiveRecord::Schema.define(version: 2020_05_22_091154) do
   end
 
   create_table "goals_dishes", force: :cascade do |t|
-    t.bigint "goal_id", null: false
     t.bigint "dish_id", null: false
+    t.bigint "goal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["dish_id"], name: "index_goals_dishes_on_dish_id"
     t.index ["goal_id"], name: "index_goals_dishes_on_goal_id"
   end
@@ -60,26 +66,34 @@ ActiveRecord::Schema.define(version: 2020_05_22_091154) do
   create_table "ingredient_products", force: :cascade do |t|
     t.bigint "ingredient_id", null: false
     t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["ingredient_id"], name: "index_ingredient_products_on_ingredient_id"
     t.index ["product_id"], name: "index_ingredient_products_on_product_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
-    t.string "title", default: "", null: false
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "nutritional_values", force: :cascade do |t|
     t.bigint "dish_id", null: false
-    t.string "title", default: "", null: false
+    t.string "title"
     t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["dish_id"], name: "index_nutritional_values_on_dish_id"
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "title", default: "", null: false
+    t.string "title"
     t.string "shop_name"
-    t.string "price"
     t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "price"
   end
 
   add_foreign_key "dish_inrgedients", "dishes"

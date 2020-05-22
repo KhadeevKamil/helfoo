@@ -1,16 +1,26 @@
 # frozen_string_literal: true
 
+# Product.all.where(shop_name: 'lenta').joins(:ingredient).group('ingredients.id').count
+# items = Ingredient.all.select { |i| i.product.where(shop_name: 'metro').count <= 0 };
 module Import
   class Product
     # TODO: test
     def call(shop_name)
       puts "Start Product for #{shop_name}"
-      not_ids = ::IngredientProducts.all.pluck(:ingredient_id).uniq
-      ::Ingredients.all.where.not(id: not_ids).each do |ingredient|
-
+      not_ids = ::IngredientProduct.all.joins(:product).where(products: { shop_name: shop_name }).pluck(:ingredient_id).uniq
+      i = 0
+      scope = if not_ids.size > 0
+        ::Ingredient.all.where.not(id: not_ids)
+      else
+        ::Ingredient.all
+      end
+      scope.each do |ingredient|
+        i += 1
+        # next if i > 3
         # take one shop
         raw_products = fetch_data(shop_name, ingredient)
 
+        puts "We have #{raw_products.size} raw products"
         # fill products
         raw_products.each do |raw_product|
           product = ::Product.find_or_initialize_by(
@@ -23,15 +33,15 @@ module Import
           )
 
           if product.save
-            puts "Save #{product.title} for #{product.shop_name}"
+            puts "Save #{product.title} (#{product.price}) for #{product.shop_name}"
           else
-            puts "Can not save #{product.title} for #{product.shop_name}"
+            puts "Can not save #{product.title} (#{product.price}) for #{product.shop_name}"
             puts product.errors.full_messages
             next
           end
 
           # fill ingredient_products
-          i_p = IngredientProducts.find_or_initialize_by(
+          i_p = IngredientProduct.find_or_initialize_by(
             ingredient_id: ingredient.id,
             product_id: product.id
           )
@@ -49,14 +59,14 @@ module Import
 
     def fetch_data(shop_name, ingredient)
       if shop_name == 'perekrestok'
-        puts "Start perekrestor for #{ingredient.title}"
-        ::Scrapers::Perekrestok.new(ingredient.title)
+        puts "Start perekrestok for #{ingredient.title}(#{ingredient.id})"
+        ::Scrapers::Perekrestok.new.call(ingredient.title)
       elsif shop_name == 'lenta'
-        puts "Start lenta for #{ingredient.title}"
-        ::Scrapers::Lenta.new(ingredient.title)
+        puts "Start lenta for #{ingredient.title}(#{ingredient.id})"
+        ::Scrapers::Lenta.new.call(ingredient.title)
       elsif shop_name == 'metro'
-        puts "Start metro for #{ingredient.title}"
-        lenta_raw_products = ::Scrapers::Metro.new(ingredient.title)
+        puts "Start metro for #{ingredient.title}(#{ingredient.id})"
+        lenta_raw_products = ::Scrapers::Metro.new.call(ingredient.title)
       end
     end
   end
