@@ -24,7 +24,7 @@ module Api
               id: 83,
               title: 'Грушевый салат',
               category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
-              image_url: 'public/profile.jpg',
+              image_url: 'public/assets/profile.jpg',
               price: 990
             }
           ]
