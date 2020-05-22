@@ -8,24 +8,68 @@ module Api
       # GET /dishes
       # GET /dishes.json
       def index
-        @goal_slug = params[:goal_slug]
-        @days = params[:days]
+        # goal_slug = params[:goal_slug]
+        # days = params[:days]
 
-        goal = Goal.find_by(slug: @goal_slug)
+        # goal_id = Goal.find_by(slug: goal_slug).id
 
-        dishes_ids = GoalsDish.where(goal_id: goal.id)
+        # dishes_ids = GoalsDish.where(goal_id: goal_id).map { |t| t.dish_id }
 
-        @dishes = Dish.where(id: dishes_ids)
+        # dishes = Dish.where(id: dishes_ids)
 
-        render json: @dishes, status: :ok
+        dishes = [{
+          day: 1,
+          dishes: [
+            {
+              id: 123,
+              title: 'Грушевый салат',
+              category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
+              image_url: 'http://sdfsdf.com/sdfsdf',
+              price: 990
+            }
+          ]
+        }]
+
+        # binding.pry
+        # render json: dishes, each_serializer: DishSerializer, status: :ok
+        render json: dishes, status: :ok
       end
 
       # GET /dishes/1
       # GET /dishes/1.json
       def show
-        @dish = Dish.find params[:id]
+        # binding.pry
+        # @dish = Dish.find params[:id]
 
-        render json: @dish, status: :ok
+        dish = {
+          id: 123,
+          title: 'Грушевый салат',
+          image_url: 'http://sdfsdf.com/sdfsdf'
+          calories: 283,
+          carbohydrates: 55,
+          protein 10,
+          fat: 2,
+          nutritional_values: [
+            { id: 123, title: 'Витами А', value: 123}
+          ],
+          inrgedients: [
+            { id: 123, title: 'яйца', value: '3 штуки' }
+          ]
+        }
+
+        render json: dish, status: :ok
+      end
+
+      def check
+        d = {
+          id: 123,
+          title: 'Грушевый салат',
+          category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
+          image_url: 'http://sdfsdf.com/sdfsdf',
+          price: 990
+        }
+
+        render json: d, status: :ok
       end
     end
   end
