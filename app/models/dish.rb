@@ -25,4 +25,10 @@ class Dish < ApplicationRecord
   has_many :nutritional_value, dependent: :destroy
   has_many :goals_dishes, dependent: :destroy
   has_many :goals, through: :goals_dishes
+
+  scope :breakfest, -> { where(category_id: Category.find_by(slug: "breakfest")) }
+  scope :lunch, -> { where(category_id: Category.find_by(slug: "lunch")) }
+  scope :desert, -> { where(category_id: Category.find_by(slug: "desert")) }
+  scope :salat, -> { where(category_id: Category.find_by(slug: "salat")) }
+  scope :drink, -> { where(category_id: Category.find_by(slug: "drink")) }
 end

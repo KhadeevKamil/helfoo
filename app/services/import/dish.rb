@@ -65,6 +65,7 @@ module Import
           ['Item 7', 'Item 7 amount'],
           ['Item 8', 'Item 8 amount']
         ].each do |ingredient_name, ingredient_amount|
+          
           next if row[ingredient_name].nil? || row[ingredient_name].size == 0
 
           item = ::Ingredient.find_by(title: row[ingredient_name])
