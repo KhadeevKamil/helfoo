@@ -13,6 +13,6 @@
 #  updated_at :datetime         not null
 #
 class Product < ApplicationRecord
-  has_many :ingredient_product
+  has_many :ingredient_product, dependent: :destroy
   has_many :ingredient, through: :ingredient_product
 end

@@ -19,10 +19,10 @@
 #
 class Dish < ApplicationRecord
   has_one :category
-  
-  has_many :dish_inrgedient
+
+  has_many :dish_inrgedient, dependent: :destroy
   has_many :ingredient, through: :dish_inrgedient
-  has_many :nutritional_value
-  has_many :goals_dishes
+  has_many :nutritional_value, dependent: :destroy
+  has_many :goals_dishes, dependent: :destroy
   has_many :goals, through: :goals_dishes
 end

@@ -34,6 +34,7 @@ gem 'foreman'
 
 gem 'rack-cors'
 gem 'responders'
+gem 'translit'
 
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
