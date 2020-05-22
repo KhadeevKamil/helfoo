@@ -11,7 +11,13 @@ namespace :import do
     puts '04'
     Rake::Task["import:dish"].invoke
     puts '05'
-    Rake::Task['import::nutritional_value'].invoke
+    Rake::Task['import:nutritional_value'].invoke
+    puts '06.1'
+    Rake::Task['import:product:perekrestok'].invoke
+    puts '06.2'
+    Rake::Task['import:product:lenta'].invoke
+    puts '06.3'
+    Rake::Task['import:product:metro'].invoke
   end
 
   task goal: :environment do
@@ -34,7 +40,17 @@ namespace :import do
     Import::NutritionalValue.call
   end
 
-  task product: :environment do
-    Import::Product.call
+  namespace :product do
+    task perekrestok: :environment do
+      Import::Product.call('perekrestok')
+    end
+
+    task lenta: :environment do
+      Import::Product.call('lenta')
+    end
+
+    task metro: :environment do
+      Import::Product.call('metro')
+    end
   end
 end
