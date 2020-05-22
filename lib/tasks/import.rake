@@ -2,12 +2,14 @@
 
 namespace :import do
   task all: :environment do
-    # 01
+    puts '01'
     Rake::Task["import:goal"].invoke
-    # 02
+    puts '02'
     Rake::Task["import:ingredient"].invoke
-    # 03
+    puts '03'
     Rake::Task["import:category"].invoke
+    puts '04'
+    Rake::Task["import:dish"].invoke
   end
 
   task goal: :environment do
@@ -20,5 +22,9 @@ namespace :import do
 
   task category: :environment do
     Import::Category.new.call
+  end
+
+  task dish: :environment do
+    Import::Dish.new.call
   end
 end

@@ -18,7 +18,7 @@ module Import
           if category.save
             puts "Created category '#{category_slug}'"
           else
-            puts "Can not create category '#{category_slug}'"
+            puts "Can not create category '#{category_slug}' => #{category.errors.full_messages}"
           end
         else
           puts "category '#{category_slug}' alreafy exist"
