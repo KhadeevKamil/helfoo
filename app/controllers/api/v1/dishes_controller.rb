@@ -22,29 +22,27 @@ module Api
           i += 1
         end
 
-        # binding.pry
         render json: DishesSerializer.new(dishes_with_days).to_json, status: :ok
       end
 
       # GET /dishes/1
       # GET /dishes/1.json
       def show
-        # binding.pry
-        dish = Dish.find params[:id]
+        dish = Dish.find params[:dish_id]
 
         render json: dish, serializer: DishSerializer, status: :ok
       end
 
       def change
-        d = {
-          id: 123,
-          title: 'Грушевый салат',
-          category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
-          image_url: 'https://mir-s3-cdn-cf.behance.net/projects/max_808/5a244277673529.Y3JvcCwyMzYxLDE4NDYsMCwxOTI.png',
-          price: 990
-        }
+        dish_id = params[:dish_id]
 
-        render json: d, status: :ok
+        dish = Dish.find_by(id: dish_id)
+        goal_slug = dish.goals.first
+        c_slug = Category.find dish.category_id
+
+        d = Dish.where(category_id: c_slug.id).where.not(id: dish.id).first
+
+        render json: d, serializer: DishSerializer, status: :ok
       end
 
       private 

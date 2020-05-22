@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   namespace :api, constraints: { format: 'json' } do
     namespace :v1 do
       resources :goals, only: %i[show index]
-      resources :dishes, only: %i[show index change]
+      get "dishes/change", to: 'dishes#change'
+      resources :dishes, only: %i[show index]
+      
       resources :carts, only: %i[index]
     end
   end
