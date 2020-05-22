@@ -21,6 +21,10 @@ require 'sprockets/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Raven.configure do |config|
+  config.dsn = 'https://de531d9c87b14c0aab247032db312f52:4526aa738db447588b00d2796ac18701@o396568.ingest.sentry.io/5250049'
+end
+
 module Helfoo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
