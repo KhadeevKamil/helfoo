@@ -1,10 +1,6 @@
-
-# frozen_string_literal: true
-
 class DishSerializer < ActiveModel::Serializer
-  attributes :id, :title, :slug, :category, :image_url, :price
+  attributes :id, :title, :image_url, :calories, :carbohydrates, :protein, :fat
 
-  # def qwe
-  #   binding.pry
-  # end
+  has_many :nutritional_value
+  has_many :ingredient
 end
