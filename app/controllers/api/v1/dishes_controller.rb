@@ -24,7 +24,7 @@ module Api
               id: 83,
               title: 'Грушевый салат',
               category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
-              image_url: 'public/assets/profile.jpg',
+              image_url: 'https://mir-s3-cdn-cf.behance.net/projects/max_808/5a244277673529.Y3JvcCwyMzYxLDE4NDYsMCwxOTI.png',
               price: 990
             }
           ]
@@ -44,7 +44,7 @@ module Api
         dish = {
           id: 123,
           title: 'Грушевый салат',
-          image_url: 'http://sdfsdf.com/sdfsdf',
+          image_url: 'https://mir-s3-cdn-cf.behance.net/projects/max_808/5a244277673529.Y3JvcCwyMzYxLDE4NDYsMCwxOTI.png',
           calories: 283,
           carbohydrates: 55,
           protein: 10,
@@ -65,7 +65,7 @@ module Api
           id: 123,
           title: 'Грушевый салат',
           category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
-          image_url: 'http://sdfsdf.com/sdfsdf',
+          image_url: 'https://mir-s3-cdn-cf.behance.net/projects/max_808/5a244277673529.Y3JvcCwyMzYxLDE4NDYsMCwxOTI.png',
           price: 990
         }
 
