@@ -3,9 +3,9 @@
 namespace :import do
   task all: :environment do
     # 01
-    Rake::Task["import:goals"].invoke
+    Rake::Task['import:goals'].invoke
     # 02
-    Rake::Task["import:ingredients"].invoke
+    Rake::Task['import:ingredients'].invoke
   end
 
   task goal: :environment do

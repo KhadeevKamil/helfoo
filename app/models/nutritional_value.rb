@@ -2,13 +2,15 @@
 
 # == Schema Information
 #
-# Table name: goals
+# Table name: nutritional_values
 #
 #  id         :bigint           not null, primary key
+#  dish_id    :bigint           not null
 #  title      :string
-#  slug       :string
+#  value      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Goal < ApplicationRecord
+class NutritionalValue < ApplicationRecord
+  belongs_to :dish
 end

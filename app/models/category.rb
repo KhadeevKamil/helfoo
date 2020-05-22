@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: goals
+# Table name: categories
 #
 #  id         :bigint           not null, primary key
 #  title      :string
@@ -10,5 +10,5 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Goal < ApplicationRecord
+class Category < ApplicationRecord
 end

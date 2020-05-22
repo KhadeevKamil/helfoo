@@ -2,13 +2,12 @@
 
 # == Schema Information
 #
-# Table name: goals
+# Table name: ingredients
 #
 #  id         :bigint           not null, primary key
 #  title      :string
-#  slug       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Goal < ApplicationRecord
+class Ingredient < ApplicationRecord
 end
