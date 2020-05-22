@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 module Import
   class NutritionalValue
     # TODO: test
@@ -11,7 +9,7 @@ module Import
       dish_ids = ::NutritionalValue.all.pluck(:dish_id).uniq
       ::Dish.where.not(id: dish_ids).pluck(:dish_id).each do |dish_id|
         samples.shuffle.take(rand(6)).each do |string|
-          NutritionalValue.create(
+          ::NutritionalValue.create(
             dish_id: dish_id,
             title: string,
             value: rand(50).to_s

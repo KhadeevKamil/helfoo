@@ -33,4 +33,8 @@ namespace :import do
   task nutritional_value: :environment do
     Import::NutritionalValue.call
   end
+
+  task product: :environment do
+    Import::Product.call
+  end
 end
