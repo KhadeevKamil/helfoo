@@ -33,6 +33,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'foreman'
 
 gem 'responders'
+gem 'rack-cors'
 
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
