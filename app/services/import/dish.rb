@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'csv'
-require 'pry'
 
 module Import
   class Dish
@@ -29,7 +28,7 @@ module Import
 
         dish = ::Dish.new(
           title: row['title'],
-          slug: Helper.to_slug(row['title'])
+          slug: Helper.to_slug(row['title']),
           category_id: category.id,
           image_url: row['IMG'],
           calories: row['Calls'],

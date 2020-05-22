@@ -10,6 +10,8 @@ namespace :import do
     Rake::Task["import:category"].invoke
     puts '04'
     Rake::Task["import:dish"].invoke
+    puts '05'
+    Rake::Task['import::nutritional_value'].invoke
   end
 
   task goal: :environment do
@@ -26,5 +28,9 @@ namespace :import do
 
   task dish: :environment do
     Import::Dish.new.call('dishes')
+  end
+
+  task nutritional_value: :environment do
+    Import::NutritionalValue.call
   end
 end
