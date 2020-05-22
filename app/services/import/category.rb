@@ -6,10 +6,10 @@ require 'pry'
 module Import
   class Category
     # TODO: test
-    def call
+    def call(file_name)
       puts 'Start import Category'
       i = 0
-      CSV.foreach(Rails.root.join("csvs/dishes.csv"), col_sep: ',', headers: true) do |row|
+      CSV.foreach(Rails.root.join("csvs/#{file_name}.csv"), col_sep: ',', headers: true) do |row|
         i+=1
         category_slug = row['type']
 

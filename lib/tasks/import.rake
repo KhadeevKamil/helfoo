@@ -17,14 +17,14 @@ namespace :import do
   end
 
   task ingredient: :environment do
-    Import::Ingredient.new.call
+    Import::Ingredient.new.call('dishes')
   end
 
   task category: :environment do
-    Import::Category.new.call
+    Import::Category.new.call('dishes')
   end
 
   task dish: :environment do
-    Import::Dish.new.call
+    Import::Dish.new.call('dishes')
   end
 end
