@@ -19,7 +19,7 @@
 #
 class Dish < ApplicationRecord
   has_one :category
-  
+
   has_many :dish_inrgedient
   has_many :ingredient, through: :dish_inrgedient
   has_many :nutritional_value
