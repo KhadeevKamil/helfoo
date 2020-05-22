@@ -5,6 +5,8 @@ class CreateIngredientProducts < ActiveRecord::Migration[6.0]
     create_table :ingredient_products do |t|
       t.references :ingredient, null: false, foreign_key: true
       t.references :product, null: false, foreign_key: true
+
+      t.timestamps
     end
   end
 end

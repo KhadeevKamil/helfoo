@@ -6,6 +6,8 @@ class CreateDishInrgedients < ActiveRecord::Migration[6.0]
       t.references :dish, null: false, foreign_key: true
       t.references :ingredient, null: false, foreign_key: true
       t.string :amount
+
+      t.timestamps
     end
   end
 end
