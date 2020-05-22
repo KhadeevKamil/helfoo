@@ -1,0 +1,63 @@
+inherit_gem:
+  rds_styles: rubocop.yml
+
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.6
+
+Style/ParallelAssignment:
+  Enabled: false
+
+# Works only in rails 5.*
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 34
+
+Layout/LineLength:
+  Max: 142
+
+Style/Documentation:
+  Enabled: false
+
+Style/CommentedKeyword:
+  Exclude:
+    - spec/**/*
+    - lib/**/*.rake
+
+Style/SymbolArray:
+  Exclude:
+    - spec/**/*
+
+Style/PercentLiteralDelimiters:
+  Exclude:
+    - spec/**/*
+
+Layout/HeredocIndentation:
+  Exclude:
+    - spec/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
+# NOTE: turned it off because sometimes we use .update_attribute, .update_column methods
+# https://www.rubydoc.info/gems/rubocop/0.70.0/RuboCop/Cop/Rails/SkipsModelValidations
+Rails/SkipsModelValidations:
+  Enabled: false
+
+# the rule doesn't work for capistrano task
+# we will get the error "Don't know how to build task 'environment'"
+Rails/RakeEnvironment:
+  Exclude:
+    - lib/capistrano/tasks/**/*
+
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/CaseIndentation:
+  EnforcedStyle: case
+  IndentationWidth: nil
+

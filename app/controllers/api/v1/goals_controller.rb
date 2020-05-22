@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 module Api
   module V1
@@ -26,8 +27,7 @@ module Api
       end
 
       # GET /goals/1/edit
-      def edit
-      end
+      def edit; end
 
       # POST /goals
       # POST /goals.json
@@ -70,15 +70,16 @@ module Api
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_goal
-          @goal = Goal.find(params[:id])
-        end
 
-        # Only allow a list of trusted parameters through.
-        def goal_params
-          params.require(:goal).permit(:title, :slug)
-        end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_goal
+        @goal = Goal.find(params[:id])
+      end
+
+      # Only allow a list of trusted parameters through.
+      def goal_params
+        params.require(:goal).permit(:title, :slug)
+      end
     end
   end
 end
