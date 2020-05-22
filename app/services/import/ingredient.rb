@@ -12,8 +12,6 @@ module Import
       CSV.foreach(Rails.root.join("csvs/dishes.csv"), col_sep: ',', headers: true) do |row|
         i+=1
         next if i > 3
-
-
         [
           row['Item 1'],
           row['Item 2'],
