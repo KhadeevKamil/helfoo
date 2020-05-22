@@ -44,10 +44,10 @@ module Api
         dish = {
           id: 123,
           title: 'Грушевый салат',
-          image_url: 'http://sdfsdf.com/sdfsdf'
+          image_url: 'http://sdfsdf.com/sdfsdf',
           calories: 283,
           carbohydrates: 55,
-          protein 10,
+          protein: 10,
           fat: 2,
           nutritional_values: [
             { id: 123, title: 'Витами А', value: 123}
@@ -60,7 +60,7 @@ module Api
         render json: dish, status: :ok
       end
 
-      def check
+      def change
         d = {
           id: 123,
           title: 'Грушевый салат',
