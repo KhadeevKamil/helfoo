@@ -21,10 +21,10 @@ module Api
           day: 1,
           dishes: [
             {
-              id: 123,
+              id: 83,
               title: 'Грушевый салат',
               category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
-              image_url: 'http://sdfsdf.com/sdfsdf',
+              image_url: 'public/profile.jpg',
               price: 990
             }
           ]
