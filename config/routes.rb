@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :goals, only: %i[show index]
       resources :dishes, only: %i[show index change]
-      resource :cart, only: %i[show]
+      resources :carts, only: %i[index]
     end
   end
 end

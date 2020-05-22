@@ -5,7 +5,7 @@ module Api
     class CartsController < ::Api::V1::ApplicationController
       respond_to :json
 
-      def show
+      def index
         cart =[
           { 
             shop_name: 'Перекресток', 
