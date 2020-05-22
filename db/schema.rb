@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,14 +10,84 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_521_205_855) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+ActiveRecord::Schema.define(version: 2020_05_22_091154) do
 
-  create_table 'goals', force: :cascade do |t|
-    t.string 'title'
-    t.string 'slug'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "slug", default: "", null: false
   end
+
+  create_table "dish_inrgedients", force: :cascade do |t|
+    t.bigint "dished_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.string "amount"
+    t.index ["dished_id"], name: "index_dish_inrgedients_on_dished_id"
+    t.index ["ingredient_id"], name: "index_dish_inrgedients_on_ingredient_id"
+  end
+
+  create_table "disheds", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "slug", default: "", null: false
+    t.bigint "category_id", null: false
+    t.string "image_url"
+    t.float "calories"
+    t.float "carbohydrates"
+    t.float "protein"
+    t.float "fat"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_disheds_on_category_id"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "goals_dishes", force: :cascade do |t|
+    t.bigint "goal_id", null: false
+    t.bigint "dished_id", null: false
+    t.index ["dished_id"], name: "index_goals_dishes_on_dished_id"
+    t.index ["goal_id"], name: "index_goals_dishes_on_goal_id"
+  end
+
+  create_table "ingredient_products", force: :cascade do |t|
+    t.bigint "ingredient_id", null: false
+    t.bigint "product_id", null: false
+    t.index ["ingredient_id"], name: "index_ingredient_products_on_ingredient_id"
+    t.index ["product_id"], name: "index_ingredient_products_on_product_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "title", default: "", null: false
+  end
+
+  create_table "nutritional_values", force: :cascade do |t|
+    t.bigint "dished_id", null: false
+    t.string "title", default: "", null: false
+    t.string "value"
+    t.index ["dished_id"], name: "index_nutritional_values_on_dished_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "shop_name"
+    t.string "price"
+    t.string "image_url"
+  end
+
+  add_foreign_key "dish_inrgedients", "disheds"
+  add_foreign_key "dish_inrgedients", "ingredients"
+  add_foreign_key "disheds", "categories"
+  add_foreign_key "goals_dishes", "disheds"
+  add_foreign_key "goals_dishes", "goals"
+  add_foreign_key "ingredient_products", "ingredients"
+  add_foreign_key "ingredient_products", "products"
+  add_foreign_key "nutritional_values", "disheds"
 end
