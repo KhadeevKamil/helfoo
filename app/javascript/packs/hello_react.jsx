@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 const Hello = props => (
-  <div>Hello 123 {props.name}!</div>
+  <div>Hello 222 {props.name}!</div>
 )
 
 Hello.defaultProps = {
