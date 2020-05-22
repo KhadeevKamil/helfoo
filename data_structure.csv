@@ -1,0 +1,26 @@
+;goals (цели диеты);goals_dishes (какие блюда в каких диетах);dished (блюда);category (категория блюд);nutritional_values (пищевая ценность);dish_inrgedients (ассоциативная таблица);ingredients (ингредиент);ingredient_products (ассоциативная таблица);products (продукт в магазине)
+;id;id;id;id;id;id;id;id;id
+;title;dish_id;title;title;dish_id;dish_id;title;ingredient_id;title
+;slug;goal_id;slug;"slug (Breakfast
+Lunch
+Desert
+Salad
+Drink)";title;ingredient_id;;product_id;shop_name (название магазина латиницей)
+;;;category_id;;value (string);amount (string);;;price
+;;;image_url;;Комментарий: заполним для каждого блюда на бум;;;;image_url
+;;;calories;;;;;;
+;;;carbohydrates;;;;;;
+;;;protein;;;;;;
+;;;fat;;;;;;
+;;;price;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
+;;;;;;;;;
