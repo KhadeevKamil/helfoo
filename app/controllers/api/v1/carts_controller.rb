@@ -7,7 +7,6 @@ module Api
 
       # api/v1/carts?dish_ids[]=1&dish_ids[]=2
       def index
-        puts "dish_ids: #{params[:dish_ids]}"
         days = params[:days].to_i || 1
         carts = []
         dishes = Dish.where(id: (params[:dish_ids] || []))
