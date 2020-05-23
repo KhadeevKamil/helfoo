@@ -7,6 +7,7 @@ module Api
 
       # api/v1/carts?dish_ids[]=1&dish_ids[]=2
       def index
+        # puts "dish_ids: #{params[:dish_ids]}"
         days = params[:days].to_i || 1
         carts = []
         dishes = Dish.where(id: (params[:dish_ids] || []))
@@ -19,8 +20,7 @@ module Api
             current_product = get_one_product(ingr_id, shop_slug)
             current_products << current_product
           end
-          current_products.uniq!
-          current_products.map!{ |i| ProductSerializer.new(i).as_json }
+          current_products = current_products.uniq.compact.map{ |i| ProductSerializer.new(i).as_json }
 
           price = current_products
                 .map { |i| (i[:price] * i[:amount]) || 0 }
