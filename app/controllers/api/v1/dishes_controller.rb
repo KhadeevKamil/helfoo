@@ -26,7 +26,7 @@ module Api
 
       # DONE!
       def show
-        dish = Dish.find_by(params[:id])
+        dish = Dish.find(params[:id])
 
         render json: dish, serializer: DishSerializer, status: :ok
       end
