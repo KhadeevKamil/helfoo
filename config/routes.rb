@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       resources :carts, only: %i[index]
     end
   end
+
+  match '*path' => redirect('/'), via: :get
 end
