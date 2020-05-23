@@ -26,14 +26,14 @@ module Api
 
       # DONE!
       def show
-        dish = Dish.find params[:id]
+        dish = Dish.find_by(params[:id])
 
         render json: dish, serializer: DishSerializer, status: :ok
       end
 
       # DONE!
       def change
-        selected_dish = Dish.find_by(id: params[:dish_id])
+        selected_dish = Dish.find_by(id: params[:dish_id]) || Dish.first
         dish = Dish.where(category_id: selected_dish.category_id)
                    .where.not(id: selected_dish.id).reorder('RANDOM()').first
 
@@ -43,7 +43,7 @@ module Api
       private
 
       def get_dishes_for_one_day(goal_slug)
-        goal_id = Goal.find_by(slug: goal_slug).id
+        goal_id = Goal.find_by(slug: goal_slug)&.id || Goal.first.id
         default_scope = Dish.joins(:goals).where(goals: { id: goal_id })
 
         # RANDOM() doesn't work with joins :(
