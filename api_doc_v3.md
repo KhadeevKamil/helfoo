@@ -124,7 +124,7 @@ days - На сколько дней мы ищем блюда. число (нуж
 [
   { 
     shop_name: 'Перекресток', 
-    slug: 'perek', 
+    slug: 'perekrestok', 
     price: '999',
     products: [
       {
@@ -150,4 +150,4 @@ days - На сколько дней мы ищем блюда. число (нуж
     products: []
   }
 ]
-slug - для картинки магазина
+slug - для картинки магазина (perekrestok, lenta, metro)
