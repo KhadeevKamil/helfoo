@@ -53,4 +53,8 @@ namespace :import do
       Import::Product.new.call('metro')
     end
   end
+
+  task price: :environment do
+    Import::Price.new.call
+  end
 end
