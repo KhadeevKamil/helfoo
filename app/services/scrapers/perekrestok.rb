@@ -11,7 +11,7 @@ module Scrapers
       encoded_query = CGI.escape(string)
       url = "https://www.perekrestok.ru/prompt?text=#{encoded_query}&withTemplate=true"
       conn = Faraday.new(url: url)
-      response = conn.get()
+      response = conn.get
       json = JSON.parse(response.body)
       json['results'].select do |item|
         item['entity'] == 'product'
@@ -23,8 +23,8 @@ module Scrapers
         html_doc = Nokogiri::HTML(item['template'])
         image = begin
           html_doc.css('img[data-src]').first['data-src']
-        rescue
-          'https://potrebnadzor.ru/files/1850/company-19950.jpg'
+                rescue StandardError
+                  'https://potrebnadzor.ru/files/1850/company-19950.jpg'
         end
 
         {

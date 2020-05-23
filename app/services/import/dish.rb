@@ -9,7 +9,7 @@ module Import
       puts 'Start import Dish'
       i = 0
       CSV.foreach(Rails.root.join("csvs/#{file_name}.csv"), col_sep: ',', headers: true) do |row|
-        i+=1
+        i += 1
         # next if i > 30
 
         category_slug = row['type']
@@ -45,6 +45,7 @@ module Import
         diet_names.each do |diet_name|
           existed_goal = ::Goal.where("lower(title) = lower('#{diet_name}')").first
           next if existed_goal.nil?
+
           diets << existed_goal
         end
 
@@ -65,11 +66,11 @@ module Import
           ['Item 7', 'Item 7 amount'],
           ['Item 8', 'Item 8 amount']
         ].each do |ingredient_name, ingredient_amount|
-          
-          next if row[ingredient_name].nil? || row[ingredient_name].size == 0
+          next if row[ingredient_name].nil? || row[ingredient_name].empty?
 
           item = ::Ingredient.find_by(title: row[ingredient_name])
           next if item.nil?
+
           dish_inrgedients << ::DishInrgedient.new(
             ingredient_id: item.id, amount: row[ingredient_amount]
           )

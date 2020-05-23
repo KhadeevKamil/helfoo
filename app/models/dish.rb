@@ -18,7 +18,7 @@
 #  updated_at    :datetime         not null
 #
 class Dish < ApplicationRecord
-  has_one :category
+  belongs_to :category
 
   has_many :dish_inrgedient, dependent: :destroy
   has_many :ingredient, through: :dish_inrgedient
@@ -26,9 +26,9 @@ class Dish < ApplicationRecord
   has_many :goals_dishes, dependent: :destroy
   has_many :goals, through: :goals_dishes
 
-  scope :breakfest, -> { where(category_id: Category.find_by(slug: "breakfest")) }
-  scope :lunch, -> { where(category_id: Category.find_by(slug: "lunch")) }
-  scope :desert, -> { where(category_id: Category.find_by(slug: "desert")) }
-  scope :salat, -> { where(category_id: Category.find_by(slug: "salat")) }
-  scope :drink, -> { where(category_id: Category.find_by(slug: "drink")) }
+  scope :breakfast, -> { where(category_id: Category.find_by(slug: 'Breakfast')) }
+  scope :lunch, -> { where(category_id: Category.find_by(slug: 'Lunch')) }
+  scope :desert, -> { where(category_id: Category.find_by(slug: 'Desert')) }
+  scope :salat, -> { where(category_id: Category.find_by(slug: 'Salad')) }
+  scope :drink, -> { where(category_id: Category.find_by(slug: 'Drink')) }
 end

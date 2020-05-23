@@ -96,6 +96,7 @@ GET /dishes/:dish_id
   carbohydrates: 55,
   protein 10,
   fat: 2,
+  category: { id: 4, title: "Salad", slug: "Salad" }, # нужно для дебага :)
   nutritional_values: [
     { id: 123, title: 'Витами А', value: 123}
   ],

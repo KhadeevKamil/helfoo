@@ -3,13 +3,13 @@
 namespace :import do
   task all: :environment do
     puts '01'
-    Rake::Task["import:goal"].invoke
+    Rake::Task['import:goal'].invoke
     puts '02'
-    Rake::Task["import:ingredient"].invoke
+    Rake::Task['import:ingredient'].invoke
     puts '03'
-    Rake::Task["import:category"].invoke
+    Rake::Task['import:category'].invoke
     puts '04'
-    Rake::Task["import:dish"].invoke
+    Rake::Task['import:dish'].invoke
     puts '05'
     Rake::Task['import:nutritional_value'].invoke
     puts '06.1'

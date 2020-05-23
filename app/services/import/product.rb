@@ -9,10 +9,10 @@ module Import
       puts "Start Product for #{shop_name}"
       not_ids = ::IngredientProduct.all.joins(:product).where(products: { shop_name: shop_name }).pluck(:ingredient_id).uniq
       i = 0
-      scope = if not_ids.size > 0
-        ::Ingredient.all.where.not(id: not_ids)
-      else
-        ::Ingredient.all
+      scope = if !not_ids.empty?
+                ::Ingredient.all.where.not(id: not_ids)
+              else
+                ::Ingredient.all
       end
       scope.each do |ingredient|
         i += 1
