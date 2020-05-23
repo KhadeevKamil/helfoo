@@ -11,7 +11,7 @@ module Api
         i = 1
 
         goal_slug = params[:goal_slug]
-        days = params[:days]
+        days = params[:days] || 1
 
         days.to_i.times do
           dishes_with_days << {
