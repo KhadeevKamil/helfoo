@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.559717a1.chunk.css",
+    "main.js": "/static/js/main.5a85f355.chunk.js",
+    "main.js.map": "/static/js/main.5a85f355.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c8f0954f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c8f0954f.js.map",
+    "static/js/2.3d1beaf1.chunk.js": "/static/js/2.3d1beaf1.chunk.js",
+    "static/js/2.3d1beaf1.chunk.js.map": "/static/js/2.3d1beaf1.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.9931eaf0c358a73ad31efedb2e62e66c.js": "/precache-manifest.9931eaf0c358a73ad31efedb2e62e66c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.559717a1.chunk.css.map": "/static/css/main.559717a1.chunk.css.map",
+    "static/js/2.3d1beaf1.chunk.js.LICENSE.txt": "/static/js/2.3d1beaf1.chunk.js.LICENSE.txt",
+    "static/media/style.css": "/static/media/weight.468a7e54.svg",
+    "static/media/cabbage.svg": "/static/media/cabbage.6a7e0e28.svg",
+    "static/media/carrot.svg": "/static/media/carrot.30d30271.svg",
+    "static/media/cart.svg": "/static/media/cart.48deb1f9.svg",
+    "static/media/cartGroup.png": "/static/media/cartGroup.ed6c6841.png",
+    "static/media/corn.svg": "/static/media/corn.cd9f209e.svg",
+    "static/media/first.png": "/static/media/first.7eaf5a17.png",
+    "static/media/lock.svg": "/static/media/lock.ebd471e3.svg",
+    "static/media/logoNutriLoader.png": "/static/media/logoNutriLoader.c0f0b1ad.png",
+    "static/media/price.svg": "/static/media/price.bf27e865.svg",
+    "static/media/twoPerson.svg": "/static/media/twoPerson.a1729ff9.svg",
+    "static/media/updateDish.svg": "/static/media/updateDish.69920449.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c8f0954f.js",
+    "static/js/2.3d1beaf1.chunk.js",
+    "static/css/main.559717a1.chunk.css",
+    "static/js/main.5a85f355.chunk.js"
+  ]
+}
