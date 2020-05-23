@@ -11,17 +11,18 @@ module Api
         days = params[:days].to_i || 1
         carts = []
         dishes = Dish.where(id: (params[:dish_ids] || []))
-        ingredients = dishes.map(&:ingredient).uniq
+        ingredients = dishes.map(&:ingredient).compact.flatten.uniq
 
         data = [:perekrestok, :lenta, :metro].map do |shop_slug|
           current_products = []
 
           ingredients.map(&:id).each do |ingr_id|
-            current_items = get_products(ingr_id, shop_slug)
-              current_products = current_items.map do |item|
-              ProductSerializer.new(item).as_json
-            end
+            current_product = get_one_product(ingr_id, shop_slug)
+            current_products << current_product
           end
+          current_products.uniq!
+          current_products.map!{ |i| ProductSerializer.new(i).as_json }
+
           price = current_products
                 .map { |i| (i[:price] * i[:amount]) || 0 }
                 .reduce(:+)
@@ -29,7 +30,7 @@ module Api
           carts << {
             shop_name: get_shop_name(shop_slug),
             slug: shop_slug,
-            price: price || 0,
+            price: (price || 0).round(2),
             products: current_products
           }
         end
@@ -38,8 +39,8 @@ module Api
 
       private
 
-      def get_products(ingr_id, shop_slug)
-        Product.joins(:ingredients)
+      def get_one_product(ingr_id, shop_slug)
+        Product.joins(:ingredient)
           .where(ingredients: {id: ingr_id})
           .where(shop_name: shop_slug)
           .order(price: :asc)
@@ -47,7 +48,7 @@ module Api
       end
 
       def get_shop_name(slug)
-        case slug
+        case slug.to_s
         when 'perekrestok'
           'Перекресток'
         when 'lenta'
