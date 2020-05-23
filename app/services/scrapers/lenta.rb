@@ -22,7 +22,7 @@ module Scrapers
           'Cookie' => 'ASPXANONYMOUS=7hJjxYY2ZxRboMaOYmfQqs3dCQqdhDdHyZmBNfZg5Q_jHbGmeW-Ewgt9QYx02QdskG02K4yvC_JRgpxrLtKHX1-EzJC7l8RpzoNjbfpf6h4ehZX5XVEQqLuMRAcQaUfv6Mia4g2; ASP.NET_SessionId=52r5ff2zdduqiwe5ja52pui3; CustomerId=0c561944ce674cbeab291f92e24355f7; tmr_lvid=7707477cfe9e1d427756f26e48b7e38e; tmr_lvidTS=1589822047700; _ym_uid=158982204866986434; _ym_d=1589822048; _fbp=fb.1.1589822049356.1893048578; _ga=GA1.2.481196603.1589822049; lentaT2=spb; Store=0006; CityCookie=spb; cookiesession1=6A18CEB249CJPW1OWK3AFHNAQT2VCC95; tmr_reqNum=56'
         }
       )
-      response = conn.get()
+      response = conn.get
       json = JSON.parse(response.body)
       json['skus'].each do |item|
         products << item
@@ -33,9 +33,7 @@ module Scrapers
         next if price < 0
 
         image = 'https://lenta.gcdn.co/static/pics/image-default--thumb.305ca150c22262acb4c40de317e93d1a.png'
-        if !item['imageUrl'].nil? && item['imageUrl'].size > 0
-          image = item['imageUrl']
-        end
+        image = item['imageUrl'] if !item['imageUrl'].nil? && !item['imageUrl'].empty?
 
         {
           price: price,

@@ -5,71 +5,55 @@ module Api
     class DishesController < ::Api::V1::ApplicationController
       respond_to :json
 
-      # GET /dishes
-      # GET /dishes.json
+      # DONE!
       def index
-        # goal_slug = params[:goal_slug]
-        # days = params[:days]
+        dishes_with_days = []
+        i = 1
 
-        # goal_id = Goal.find_by(slug: goal_slug).id
+        goal_slug = params[:goal_slug]
+        days = params[:days]
 
-        # dishes_ids = GoalsDish.where(goal_id: goal_id).map { |t| t.dish_id }
+        days.to_i.times do
+          dishes_with_days << {
+            day: i,
+            dishes: get_dishes_for_one_day(goal_slug)
+          }
+          i += 1
+        end
 
-        # dishes = Dish.where(id: dishes_ids)
-
-        dishes = [{
-          day: 1,
-          dishes: [
-            {
-              id: 83,
-              title: 'Грушевый салат',
-              category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
-              image_url: 'public/assets/profile.jpg',
-              price: 990
-            }
-          ]
-        }]
-
-        # binding.pry
-        # render json: dishes, each_serializer: DishSerializer, status: :ok
-        render json: dishes, status: :ok
+        render json: DishesSerializer.new(dishes_with_days).as_json[:result], status: :ok
       end
 
-      # GET /dishes/1
-      # GET /dishes/1.json
+      # DONE!
       def show
-        # binding.pry
-        # @dish = Dish.find params[:id]
+        dish = Dish.find params[:id]
 
-        dish = {
-          id: 123,
-          title: 'Грушевый салат',
-          image_url: 'http://sdfsdf.com/sdfsdf',
-          calories: 283,
-          carbohydrates: 55,
-          protein: 10,
-          fat: 2,
-          nutritional_values: [
-            { id: 123, title: 'Витами А', value: 123}
-          ],
-          inrgedients: [
-            { id: 123, title: 'яйца', value: '3 штуки' }
-          ]
-        }
-
-        render json: dish, status: :ok
+        render json: dish, serializer: DishSerializer, status: :ok
       end
 
+      # DONE!
       def change
-        d = {
-          id: 123,
-          title: 'Грушевый салат',
-          category: { id: 123, slug: 'breakfast', title: 'Завтрак' },
-          image_url: 'http://sdfsdf.com/sdfsdf',
-          price: 990
-        }
+        selected_dish = Dish.find_by(id: params[:dish_id])
+        dish = Dish.where(category_id: selected_dish.category_id)
+                   .where.not(id: selected_dish.id).reorder('RANDOM()').first
 
-        render json: d, status: :ok
+        render json: dish, serializer: DishSerializer, status: :ok
+      end
+
+      private
+
+      def get_dishes_for_one_day(goal_slug)
+        goal_id = Goal.find_by(slug: goal_slug).id
+        default_scope = Dish.joins(:goals).where(goals: { id: goal_id })
+
+        # RANDOM() doesn't work with joins :(
+        [
+          default_scope.breakfast.sample,
+          default_scope.lunch.sample,
+          default_scope.desert.sample,
+          default_scope.salat.sample,
+          default_scope.drink.sample
+        ].compact
       end
     end
   end

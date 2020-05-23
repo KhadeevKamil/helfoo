@@ -9,7 +9,7 @@ module Import
       puts 'Start import Category'
       i = 0
       CSV.foreach(Rails.root.join("csvs/#{file_name}.csv"), col_sep: ',', headers: true) do |row|
-        i+=1
+        i += 1
         # next if i > 4
         category_slug = row['type']
 

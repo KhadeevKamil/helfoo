@@ -8,7 +8,7 @@ module Api
       # GET /goals
       # GET /goals.json
       def index
-        @goals = Goal.all
+        @goals = Goal.all.select(:id, :title, :slug)
 
         render json: @goals, status: :ok
       end
@@ -19,13 +19,6 @@ module Api
         @goal = Goal.find params[:id]
 
         render json: @goal, status: :ok
-      end
-
-      private
-      
-      # Only allow a list of trusted parameters through.
-      def goal_params
-        params.require(:goal).permit(:title, :slug)
       end
     end
   end

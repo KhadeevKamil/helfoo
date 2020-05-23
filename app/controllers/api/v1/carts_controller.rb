@@ -6,10 +6,10 @@ module Api
       respond_to :json
 
       def index
-        cart =[
-          { 
-            shop_name: 'Перекресток', 
-            slug: 'perek', 
+        cart = [
+          {
+            shop_name: 'Перекресток',
+            slug: 'perek',
             price: '999',
             products: [
               {
@@ -17,25 +17,24 @@ module Api
                 title: 'картошка мытая',
                 amount: 1,
                 image: 'http://dsfsdf.com/sdfsdf.jpg',
-                price: 99,
+                price: 99
               },
               {
                 id: 12,
                 title: 'Котлеты Котофей 1 упаковка',
                 amount: 3,
                 image: 'http://dsfsdf.com/sdfsdf2.jpg',
-                price: 300,
-              },
+                price: 300
+              }
             ]
           },
-          { 
-            shop_name: 'Метро', 
-            slug: 'metro', 
+          {
+            shop_name: 'Метро',
+            slug: 'metro',
             price: '672',
             products: []
           }
         ]
-        
 
         render json: cart, status: :ok
       end
